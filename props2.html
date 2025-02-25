@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        let rootNode = document.getElementById("root");
+        
+        ReactDOM.createRoot(rootNode).render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>,
+        );
+        function App(title, contents) {
+            const myfunc = ()=> { alert('부모함수'); }            
+            return(
+                <div>
+                    <Child parentFunc={myfunc}/>
+                </div>
+            )
+        } 
+        function Child({parentFunc}) {
+            return (
+                <div>
+                    <h1>자식객체입니다.</h1>
+                    <button type="button" onClick={parentFunc}>클릭</button>
+                </div>
+            )
+        }
+    </script>
+</body>
+</html>

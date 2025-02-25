@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        let rootNode = document.getElementById("root");
+        
+        ReactDOM.createRoot(rootNode).render(
+            <React.StrictMode>
+                <Score name="홍길동" kor="90" eng="80" mat="60"/>
+            </React.StrictMode>,
+        );
+        function Score(props) {
+            console.log(props);
+            const [name, setName] = React.useState(props["name"]);
+            const [kor, setKor] = React.useState(props.kor);
+            const [eng, setEng] = React.useState(props.eng);
+            const [mat, setMat] = React.useState(props.mat);
+            const [result, setResult] = React.useState(0);
+
+            function nameChange(e) {
+                setName(e.target.value);
+            };
+            function korChange(e) {
+                setKor(e.target.value);
+            };
+            function engChange(e) {
+                setEng(e.target.value);
+            };
+            function matChange(e) {
+                setMat(e.target.value);
+            };
+        }  
+    </script>
+</body>
+</html>
