@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>계산기</h1>
+    <h3 id="number">0</h3>
+    <button type="button" id="increase">+</button>
+    <button type="button" id="decrease">-</button>    
+</body>
+<script>
+    let number = document.getElementById("number");
+    let increase = document.getElementById("increase");
+    let decrease = document.getElementById("decrease");
+
+    increase.addEventListener("click", () => {
+        num = parseInt(number.innerHTML) + 1;
+        document.getElementById("number").innerHTML = num;
+    }); 
+
+    decrease.addEventListener("click", () => {
+        num = parseInt(number.innerHTML) - 1;
+        document.getElementById("number").innerHTML = num;
+    }); 
+</script>
+</html>
+
