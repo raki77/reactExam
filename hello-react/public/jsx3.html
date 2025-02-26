@@ -12,17 +12,23 @@
     <div id="root"></div>
     <script type="text/babel">
         let rootNode = document.getElementById("root");
+
         ReactDOM.createRoot(rootNode).render(
             <React.StrictMode> 
                 <App/>
             </React.StrictMode>
         );
 
+        const myFunction = ()=> {
+            alert("함수호출");
+        }
+
         // 함수기반 컴포넌트 만들기
         function App() {
             // return 구문 안에 태그를 두어야 한다.
             return (
                 <div>
+                    <h1 onClick={myFunction}>함수호출</h1>
                 </div>
             )
         }

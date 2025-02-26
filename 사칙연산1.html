@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        let rootNode = document.getElementById("root");
+        ReactDOM.createRoot(rootNode).render(
+            <React.StrictMode> 
+                <App/>
+            </React.StrictMode>
+        );
+        // 함수기반 컴포넌트 만들기
+        function App() {           
+            // x, y, result
+            const [x, setX] = React.useState(0);
+            const [y, setY] = React.useState(0);
+            const [result, setResult] = React.useState(0);
+
+            // 자바스크립트는 이벤트가 발생하면 이벤트 정보 저장한 객체를 매개변수로
+            // 받을 수 있다.
+            const xChange = (e)=> {
+                setX( e.target.value );
+            }
+
+            const yChange = (e)=> {
+                setY( e.target.value);
+            }
+
+            const add = (e)=> {
+                setResult( parseInt(x) + parseInt(y) );
+            }
+            const minus = (e)=> {
+                setResult( parseInt(x) - parseInt(y) );
+            }
+            const mul = (e)=> {
+                setResult( parseInt(x) * parseInt(y) );
+            }
+            const div = (e)=> {
+                setResult( parseInt(x) / parseInt(y) );
+            }
+
+            // return 구문 안에 태그를 두어야 한다.
+            return (
+                <div>
+                    x : <input type="text" onChange={xChange}/> <br/>
+                    y : <input type="text" onChange={yChange}/> <br/>
+                    <h3>{result}</h3>
+                    <button type="button" onClick={add}>더하기</button>
+                    <button type="button" onClick={minus}>빼기</button>
+                    <button type="button" onClick={mul}>곱셈</button>
+                    <button type="button" onClick={div}>곱셈</button>
+                </div>
+            )            
+        }
+    </script>
+</body>
+</html>
