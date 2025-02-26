@@ -15,21 +15,14 @@
         ReactDOM.createRoot(rootNode).render(
             <React.StrictMode> 
                 <App/>
-                <App/>
-                <App/>
-            </React.StrictMode> 
+            </React.StrictMode>
         );
-        
+
+        // 함수기반 컴포넌트 만들기
         function App() {
-            const onclick = () => {
-                alert('[함수]이벤트발생2');
-            }
+            // return 구문 안에 태그를 두어야 한다.
             return (
-                <div>
-                    <h1>Event Processing</h1>                    
-                    <button type="button" onClick={()=>alert("이벤트발생1")}>클릭1</button>
-                    <button type="button" onClick={onclick}>클릭2</button>
-                </div>
+                
             )
         }
     </script>
