@@ -10,12 +10,42 @@
 </head>
 <body>
     <div id="root"></div>
-    <script type="text/babel">
+    <script type="text/babel"> 
+        // 클래스기반 -> 함수기반
         class AppClass extends React.Component {
+            // this.state : 현재 상태를 저장하는 위치
+            // this.props : 부모 컴포넌트가 자식 컴포넌트한테 값을 보내기 위한 구조체
+            // 반드시 - 화면설계
+            // 생성자 - 호출자 - 시스템
+            constructor(props) {
+                super(props); // 부모생성자를 무조건 호출해야 한다.
+                // 메모리 공유를 위해
+                // 처음 react를 만들었을 때 함수는 state 와 props 소유가 안되서
+                this.state = {
+                    x:5,
+                    y:7 
+                }; //json 키와 값
+                // 함수를 만들고, bind작업을 해야 setState 함수 호출이 가능.
+                this.add = this.add.bind(this);
+            }
+            // 화살표함수 -> this를 못알아먹는다.
+            add() {
+                const {x, y} = this.state; // 모던 스크립트에 있는 문법 (해체)
+                let result = x+y; // result변수는 this.state가 아니고, 새로 만들어진 변수
+                this.setState({result:result});
+            }
             render() {
+                // ecma문법
+                // const x = this.state.x;
+                // const y = this.state.y;
+                const {x, y, result} = this.state; // 모던 스크립트에 있는 문법 (해체)
                 return (
                     <div>
                         <h1>클래스기반 컴포넌트</h1>
+                        x : {x} <br/>
+                        y : {y} <br/>    
+                        result : {result} <br/>
+                        <button type="button" onClick={this.add}>더하기</button>
                     </div>
                 )
             }
@@ -25,7 +55,7 @@
             <React.StrictMode>
                 <AppClass/>
             </React.StrictMode>
-        );
+        ); 
     </script>
 </body>
 </html>
