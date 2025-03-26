@@ -1,7 +1,9 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import FilterableProductTable from './FilterableProductTable'; // 👈 분리된 컴포넌트 import
 
 function App() {
+
   const topCoins = ['BTC', 'ETH', 'BNB', 'KLAY'];
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState([]);
@@ -23,6 +25,16 @@ function App() {
   const hideDecimal = (number, length) => {
     return Math.floor(number * 10 ** length) / 10 ** length;
   };
+
+  const PRODUCTS = [
+    {category: "Fruits", price: "$1", stocked: true, name: "Apple"},
+    {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},
+    {category: "Fruits", price: "$2", stocked: false, name: "Passionfruit"},
+    {category: "Vegetables", price: "$2", stocked: true, name: "Spinach"},
+    {category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin"},
+    {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}
+  ];
+ 
 
   useEffect(() => {
     fetch('https://api.coinpaprika.com/v1/tickers')
@@ -51,7 +63,7 @@ function App() {
       ) : error ? (
         <div style={{ color: 'red' }}>{error}</div>
       ) : (
-        <div>
+        <>
           {/* 📌 현재 환율 */}
           <div>
             <h2>Current Price</h2>
@@ -70,7 +82,7 @@ function App() {
               );
             })}
           </div>
-
+  
           {/* 📌 가격 변환기 */}
           <div className="convertPrice">
             <h3>Convert Price</h3>
@@ -107,10 +119,15 @@ function App() {
             </div>
             <button onClick={() => setValue('')}>Clear</button>
           </div>
-        </div>
+  
+          {/* ✅ 추가: 상품 필터 컴포넌트 */}
+          <div>
+            <FilterableProductTable products={PRODUCTS} />
+          </div>
+        </>
       )}
     </div>
-  );
+  ); 
 }
 
 export default App;
